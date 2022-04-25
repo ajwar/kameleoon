@@ -34,5 +34,3 @@ out/
 /logs
 /gradle
 *.log
-/gradlew
-/gradlew.bat
