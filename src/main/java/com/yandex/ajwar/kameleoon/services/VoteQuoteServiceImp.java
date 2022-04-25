@@ -16,6 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 @Slf4j
@@ -43,7 +44,7 @@ public class VoteQuoteServiceImp implements VoteQuoteService {
         try (final Stream<VoteQuote> voteQuoteStream = voteQuoteRepository.findByQuoteId(quoteId, pageable)) {
             return voteQuoteStream
                     .map(voteQuote -> mapper.map(voteQuote, VoteQuoteFullDto.class))
-                    .toList();
+                    .collect(Collectors.toList());
         }
     }
 
@@ -55,7 +56,7 @@ public class VoteQuoteServiceImp implements VoteQuoteService {
         try (final Stream<VoteQuote> voteQuoteStream = voteQuoteRepository.findByCreatedAtBetween(from, to, pageable)) {
             return voteQuoteStream
                     .map(voteQuote -> mapper.map(voteQuote, VoteQuoteFullDto.class))
-                    .toList();
+                    .collect(Collectors.toList());
         }
     }
 
@@ -67,7 +68,7 @@ public class VoteQuoteServiceImp implements VoteQuoteService {
                      voteQuoteRepository.findByCreatedAtBetweenAndVote(from, to, vote, pageable)) {
             return voteQuoteStream
                     .map(voteQuote -> mapper.map(voteQuote, VoteQuoteFullDto.class))
-                    .toList();
+                    .collect(Collectors.toList());
         }
     }
 }

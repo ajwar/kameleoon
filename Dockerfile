@@ -1,10 +1,10 @@
-FROM gradle:jdk16 as builder
+FROM gradle:jdk15 as builder
 ENV HOME /var/lib/microservices
 WORKDIR $HOME/kameleoon
 ADD --chown=gradle:gradle ${PWD} ./
 RUN gradle bootJar
 
-FROM openjdk:16-alpine3.13 as packager
+FROM openjdk:15-jdk-alpine as packager
 ENV HOME_PROJECT /opt/bintrader
 ENV NAME_JAR kameleoon-0.0.1-SNAPSHOT.jar
 RUN mkdir -p $HOME_PROJECT
