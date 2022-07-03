@@ -20,11 +20,11 @@ public interface QuoteRepository extends CustomJpaRepository<Quote, Long> {
 
     @Transactional
     @Modifying
-    @Query("update Quote set text=?1,updatedAt=?2 where id in ?3")
+    @Query("update Quote set text=?1,updatedAt=?2 where id = ?3")
     int updateById(String text, LocalDateTime updatedAt, Long id);
 
     @Transactional
     @Modifying
-    @Query("update Quote set numberOfVotes=numberOfVotes + ?1,updatedAt=?2 where id in ?3")
+    @Query("update Quote set numberOfVotes=numberOfVotes + ?1,updatedAt=?2 where id = ?3")
     int updateVoteById(int vote, LocalDateTime updatedAt, Long id);
 }
